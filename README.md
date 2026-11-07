@@ -1,4 +1,4 @@
-# 💗 A birthday surprise for Mira
+
 
 A small website made as a birthday gift. It has a secret code gate, an envelope that opens, the birthday letter, and a final note.
 
