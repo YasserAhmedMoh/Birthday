@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>A little surprise for Mira 💗</title>
+  <meta name="description" content="Someone has a little surprise for you...">
+  <meta name="theme-color" content="#fbd3e2">
+  <meta property="og:title" content="A little surprise for Mira 💗">
+  <meta property="og:description" content="Someone has a little surprise for you...">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-scene="gate">
+
+  <!-- ============ Ambient background ============ -->
+  <div class="sky" id="sky" aria-hidden="true">
+    <div class="bg bg-gate"></div>
+    <div class="bg bg-envelope"></div>
+    <div class="bg bg-surprise"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+    <div class="float-layer" style="--depth: 8"></div>
+    <div class="float-layer" style="--depth: 18"></div>
+    <div class="float-layer" style="--depth: 32"></div>
+  </div>
+  <div class="sparkle-layer" id="sparkleLayer" aria-hidden="true"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <!-- ============ Music toggle ============ -->
+  <button class="music-btn" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false" title="Music">
+    <svg class="icon-note" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5a2.5 2.5 0 1 1-2.5-2.5c.36 0 .7.07 1 .2V5.6a1 1 0 0 1 .76-.97l9-2.25A1 1 0 0 1 18.5 3.35V16a2.5 2.5 0 1 1-1.5-2.3V7.1L9 9.1z"/></svg>
+    <svg class="icon-mute" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5a2.5 2.5 0 1 1-2.5-2.5c.36 0 .7.07 1 .2V5.6a1 1 0 0 1 .76-.97l9-2.25A1 1 0 0 1 18.5 3.35V16a2.5 2.5 0 1 1-1.5-2.3V7.1L9 9.1z"/><path class="slash" d="M3.5 3.5l17 17" /></svg>
+    <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
+
+  <main>
+    <!-- ============ 1. The secret gate ============ -->
+    <section class="screen is-active" id="screen-gate" aria-label="Secret gate">
+      <div class="screen-inner">
+        <div class="gate-card glass" id="gateCard">
+          <div class="gift" id="gift" aria-hidden="true">
+            <div class="gift-burst"></div>
+            <div class="gift-lid">
+              <div class="gift-bow"><span></span><span></span><b></b></div>
+            </div>
+            <div class="gift-box"></div>
+          </div>
+
+          <h1 class="gate-title">Hey Mira! <span class="wiggle">💗</span></h1>
+          <p class="gate-sub">Someone has a little surprise for you...</p>
+
+          <form class="gate-form" id="gateForm" autocomplete="off" novalidate>
+            <label for="code" class="sr-only">Secret code</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3.1 4.5 6.8 4.5c2.1 0 3.6 1.1 5.2 3 1.6-1.9 3.1-3 5.2-3 3.7 0 5.9 3.8 4.4 7.2C19.5 16.4 12 21 12 21z"/></svg>
+              <input id="code" name="code" type="password" inputmode="numeric" maxlength="16"
+                     placeholder="Enter the secret code..." autocomplete="off" autocapitalize="off"
+                     spellcheck="false" enterkeyhint="go">
+            </div>
+            <button type="submit" class="btn btn-primary btn-unlock" id="unlockBtn">
+              <span class="btn-label">Unlock Your Surprise ✨</span>
+            </button>
+            <p class="gate-error" id="gateError" role="alert" aria-live="assertive"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. The secret envelope ============ -->
+    <section class="screen" id="screen-envelope" aria-label="A letter for Mira" aria-hidden="true">
+      <div class="screen-inner envelope-scene">
+        <p class="env-hint env-hint-top">A little letter just for you...</p>
+
+        <div class="envelope-stage">
+          <button class="envelope" id="envelope" type="button" aria-label="Open the envelope">
+            <span class="env-back"></span>
+
+            <span class="env-letter">
+              <span class="env-letter-paper">
+                <span class="env-letter-to">For Mira</span>
+                <span class="env-letter-heart">♡</span>
+                <span class="env-letter-lines"><i></i><i></i><i></i><i></i></span>
+              </span>
+            </span>
+
+            <span class="env-pocket">
+              <span class="pk pk-left"></span>
+              <span class="pk pk-right"></span>
+              <span class="pk-shadow"><span class="pk pk-bottom"></span></span>
+            </span>
+
+            <span class="env-flap-shadow"></span>
+            <span class="env-flap">
+              <span class="flap-face flap-outer"></span>
+              <span class="flap-face flap-inner"></span>
+            </span>
+
+            <span class="env-seal">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <defs>
+                  <radialGradient id="sealGrad" cx="38%" cy="32%" r="75%">
+                    <stop offset="0" stop-color="#ff9fc3"/>
+                    <stop offset=".55" stop-color="#e2558d"/>
+                    <stop offset="1" stop-color="#b8326b"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="32" cy="32" r="29" fill="url(#sealGrad)"/>
+                <circle cx="32" cy="32" r="23.5" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.4" stroke-dasharray="2 3"/>
+                <path d="M32 45s-12-7.3-12-15.4c0-4 3-6.8 6.4-6.8 2.5 0 4.3 1.3 5.6 3.2 1.3-1.9 3.1-3.2 5.6-3.2 3.4 0 6.4 2.8 6.4 6.8C44 37.7 32 45 32 45z" fill="#fff" fill-opacity=".92"/>
+                <ellipse cx="24" cy="18" rx="7" ry="3.5" fill="#fff" fill-opacity=".35" transform="rotate(-30 24 18)"/>
+              </svg>
+            </span>
+          </button>
+          <span class="env-ground-shadow" aria-hidden="true"></span>
+        </div>
+
+        <p class="env-hint env-hint-bottom">Tap the envelope to open your surprise 💌</p>
+      </div>
+    </section>
+
+    <!-- ============ 3. The birthday surprise ============ -->
+    <section class="screen" id="screen-surprise" aria-label="Birthday letter" aria-hidden="true">
+      <div class="screen-inner">
+        <article class="letter-card" id="letterCard">
+          <span class="washi washi-left" aria-hidden="true"></span>
+          <span class="washi washi-right" aria-hidden="true"></span>
+          <span class="halo" aria-hidden="true"></span>
+
+          <button class="cake" id="cake" type="button" aria-label="Make a wish and blow the candles">
+            <span class="cake-candles">
+              <span class="candle"><span class="flame"></span><span class="smoke"></span></span>
+              <span class="candle"><span class="flame"></span><span class="smoke"></span></span>
+              <span class="candle"><span class="flame"></span><span class="smoke"></span></span>
+            </span>
+            <span class="tier tier-top"></span>
+            <span class="tier tier-bottom"></span>
+            <span class="plate"></span>
+          </button>
+          <p class="cake-caption" id="cakeCaption">make a wish, then tap the candles ✨</p>
+
+          <h2 class="ar-headline" id="arHeadline" dir="rtl" lang="ar" tabindex="-1">كل سنة وانتي طيبة يا أحلى ميرا ❤️</h2>
+          <p class="en-headline" id="enHeadline">Happy Birthday, Mira!&nbsp;🎂</p>
+
+          <div class="divider" aria-hidden="true"><span></span><i>♡</i><span></span></div>
+
+          <p class="ar-message" id="arMessage" dir="rtl" lang="ar"
+             data-text="النهارده مش يوم عادي، النهارده يوم اتولدت فيه واحدة تستاهل كل حاجة حلوة في الدنيا. أتمنى سنتك الجديدة تكون مليانة ضحكة وفرحة ونجاح، وتفضلي دايمًا منورة الدنيا بجمالك وروحك الحلوة. كل سنة وانتي أجمل حاجة في الدنيا يا ميرا. 💗"
+             aria-label="النهارده مش يوم عادي، النهارده يوم اتولدت فيه واحدة تستاهل كل حاجة حلوة في الدنيا. أتمنى سنتك الجديدة تكون مليانة ضحكة وفرحة ونجاح، وتفضلي دايمًا منورة الدنيا بجمالك وروحك الحلوة. كل سنة وانتي أجمل حاجة في الدنيا يا ميرا. 💗"></p>
+
+          <div class="actions" id="actions">
+            <button class="btn btn-primary" id="hugBtn" type="button">Send a little hug 🤗</button>
+            <button class="btn btn-soft" id="moreBtn" type="button" aria-expanded="false" aria-controls="secret">One more surprise? 🎁</button>
+          </div>
+
+          <div class="secret" id="secret" hidden>
+            <div class="secret-card">
+              <span class="secret-gift" aria-hidden="true">🎀</span>
+              <p class="secret-title">Psst… a little secret 🤫</p>
+              <p class="secret-ar" dir="rtl" lang="ar">عارفة إيه أحلى حاجة في السنة دي؟ إنك فيها. 🤍</p>
+              <p class="secret-en">You turn ordinary days into little celebrations. I hope this year gives you back every bit of happiness you give everyone around you, and then some. 🌸</p>
+            </div>
+          </div>
+
+          <button class="next-link" id="toFinal" type="button">There’s one last thing… 💌</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 4. Final screen ============ -->
+    <section class="screen" id="screen-final" aria-label="Made with love" aria-hidden="true">
+      <div class="screen-inner final-scene">
+        <div class="final-heart" aria-hidden="true">
+          <span class="ring"></span><span class="ring r2"></span>
+          <svg viewBox="0 0 64 64"><defs><linearGradient id="fh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb3cf"/><stop offset="1" stop-color="#de5b8c"/></linearGradient></defs><path d="M32 56S6 41 6 22.5C6 14 12.4 8 19.8 8c5.3 0 9.4 2.9 12.2 7 2.8-4.1 6.9-7 12.2-7C51.6 8 58 14 58 22.5 58 41 32 56 32 56z" fill="url(#fh)"/></svg>
+        </div>
+        <h2 class="final-title" id="finalTitle" tabindex="-1">Made with love,<br>just for you, Mira. 💗</h2>
+        <p class="final-ar" dir="rtl" lang="ar">كل سنة وانتي طيبة 🤍</p>
+        <button class="btn btn-soft" id="replayBtn" type="button">Read my letter again 💌</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-layer" id="toastLayer" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
